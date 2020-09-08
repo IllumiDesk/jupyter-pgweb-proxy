@@ -17,7 +17,7 @@ This package executes the standard `pgweb` command. This command assumes the `pg
 Install the package with pip:
 
 ```
-pip install jupyter-pgweb-proxy
+pip install .
 ```
 
 ## Notes
