@@ -1,8 +1,6 @@
 # jupyter-pgweb-proxy
 
-This package was built using the [`jupyter-server-proxy` cookiecutter template](https://github.com/illumidesk/cookiecutter-jupyter-server-proxy).
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/illumidesk/jupyter-pgweb-proxy/main?urlpath=pgweb)
+This package was built using the [`illumidesk/jupyter-server-proxy` cookiecutter template](https://github.com/illumidesk/cookiecutter-jupyter-server-proxy).
 
 ## Requirements
 
@@ -17,13 +15,21 @@ This package executes the standard `pgweb` command. This command assumes the `pg
 Install the package with pip:
 
 ```
-pip install .
+pip install git+https://github.com/illumidesk/jupyter-pgweb-proxy.git
 ```
 
-## Notes
+## Example
 
-- If you would like to use a docker container, you may use any of the [Jupyter docker-stacks](https://jupyter-docker-stacks.readthedocs.io/en/latest/) images.
-- You may also run this package with `binder`.
+Try with binder:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/illumidesk/jupyter-pgweb-proxy/main?urlpath=pgweb)
+
+Test locally:
+
+```bash
+docker build -t jupyter/pgweb .
+docker build -it --rm -p 8888:8888 jupyter/pgweb
+```
 
 ## Credits
 

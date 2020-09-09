@@ -7,16 +7,14 @@ RUN apt-get update \
     unzip \
     wget
 
-USER root
-
+# install pgweb
 ENV PGWEB_VERSION=0.11.6
-
 RUN wget -q "https://github.com/sosedoff/pgweb/releases/download/v${PGWEB_VERSION}/pgweb_linux_amd64.zip" \
  && unzip pgweb_linux_amd64.zip -d /usr/bin \
  && mv /usr/bin/pgweb_linux_amd64 /usr/bin/pgweb
 
+# setup package, enable classic extension, build lab extension
 USER "${NB_USER}"
-
 COPY . "${HOME}"/
 COPY requirements.txt "${HOME}"/
 WORKDIR "${HOME}"
@@ -26,8 +24,8 @@ RUN python3 -m pip install -r requirements.txt \
  && jupyter labextension install @jupyterlab/server-proxy \
  && jupyter lab build
 
-COPY /etc/jupyter/jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config_base.py
-COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
+# copy configs, update permissions as root
+USER root
 RUN fix-permissions /etc/jupyter
 
 USER "${NB_USER}"
