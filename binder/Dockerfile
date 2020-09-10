@@ -15,17 +15,16 @@ RUN wget -q "https://github.com/sosedoff/pgweb/releases/download/v${PGWEB_VERSIO
 
 # setup package, enable classic extension, build lab extension
 USER "${NB_USER}"
-COPY . "${HOME}"/
-COPY requirements.txt "${HOME}"/
 WORKDIR "${HOME}"
-RUN python3 -m pip install .
-RUN python3 -m pip install -r requirements.txt \
- && jupyter serverextension enable --sys-prefix jupyter_server_proxy \
+RUN python3 -m pip install git+https://github.com/illumidesk/jupyter-pgweb-proxy.git
+RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
  && jupyter labextension install @jupyterlab/server-proxy \
  && jupyter lab build
 
 # copy configs, update permissions as root
 USER root
+RUN cp /etc/jupyter/jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config_base.py
+COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 RUN fix-permissions /etc/jupyter
 
 USER "${NB_USER}"

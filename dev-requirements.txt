@@ -1,1 +1,5 @@
+black
+docker
 docker-compose
+flake8
+pytest

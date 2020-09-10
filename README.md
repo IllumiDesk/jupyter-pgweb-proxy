@@ -25,16 +25,33 @@ This test requires you to have a database instance available as a public endpoin
 ### Run locally with `docker-compose`
 
 ```bash
-docker build -t jupyter/pgweb .
-docker build -it --rm -p 8888:8888 jupyter/pgweb
+make dev
 ```
 
 1. Open your browser: http://localhost:8889
 1. Click the `pgweb` item from the `New` dropdown in `Jupyter Classic` or click on the green `pgweb` icon in the Notebooks section in `Jupyter Lab`.
 1. Connect with the `Scheme` or `Standard` option.
 
+For example, with the `Scheme` option the string would look like so:
+
 ```
 postgres://postgres:postgres@testdb:5432/db?sslmode=disable
+```
+
+### Cleanup
+
+Stop services:
+
+```bash
+make dev-down
+```
+
+Remove images and running containers:
+
+> **NOTE**: this will stop all running containers on the local, including those with the exit status.
+
+```bash
+make clean-all
 ```
 
 ## The Hard Way
