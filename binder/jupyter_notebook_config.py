@@ -2,7 +2,7 @@ c = get_config()
 
 
 # load base config
-load_subconfig('/etc/jupyter/jupyter_notebook_config_base.py')
+load_subconfig("/etc/jupyter/jupyter_notebook_config_base.py")
 
 
 # supports iframe and samesite cookies
@@ -11,6 +11,6 @@ c.NotebookApp.tornado_settings = {
     "cookie_options": {"SameSite": "None", "Secure": True},
 }
 c.NotebookApp.allow_root = True
-c.NotebookApp.allow_origin = '*'
-c.NotebookApp.token = ''
-c.NotebookApp.default_url = '/lab'
+c.NotebookApp.allow_origin = "*"
+c.NotebookApp.token = ""
+c.NotebookApp.default_url = "/lab"
