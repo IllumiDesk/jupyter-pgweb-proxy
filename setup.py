@@ -10,17 +10,17 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="jupyter-pgweb-proxy",
-    version='0.1.0',
+    version='0.1.1',
     url="https://github.com/illumidesk/jupyter-pgweb-proxy",
     author="IllumiDesk Team",
     description="hello@illumidesk.com",
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
-	keywords=['jupyter', 'pgweb', 'jupyterhub'],
+	keywords=['jupyter', 'pgweb', 'jupyterhub', 'jupyter-server-proxy'],
 	classifiers=['Framework :: Jupyter'],
     install_requires=[
-        'jupyter-server-proxy>=1.5.0'
+        'jupyter-server-proxy>=1.5.0',
     ],
     entry_points={
         'jupyter_serverproxy_servers': [
