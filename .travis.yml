@@ -15,7 +15,6 @@
             - make venv
           script:
             - set -e
-            - make build/base-notebook
             - make test
     
     stages:
