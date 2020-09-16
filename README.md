@@ -34,8 +34,8 @@ make dev
 
 For example, with the `Scheme` option the string would look like so:
 
-```
-postgres://postgres:postgres@testdb:5432/db?sslmode=disable
+```bash
+postgres://postgres:postgres@testdb:5432/postgres?sslmode=disable
 ```
 
 ### Cleanup
