@@ -17,9 +17,7 @@ RUN wget -q "https://github.com/sosedoff/pgweb/releases/download/v${PGWEB_VERSIO
 USER "${NB_USER}"
 WORKDIR "${HOME}"
 RUN python3 -m pip install git+https://github.com/illumidesk/jupyter-pgweb-proxy.git
-RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy \
- && jupyter labextension install @jupyterlab/server-proxy \
- && jupyter lab build
+RUN jupyter serverextension enable --sys-prefix jupyter_server_proxy
 
 # copy configs, update permissions as root
 USER root
