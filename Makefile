@@ -25,7 +25,7 @@ help:
 	@grep -E '^[a-zA-Z0-9_%/-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 build: ## build the latest image for a stack
-	${VENV_BIN}/jupyter-repo2docker --no-run --user-id 1000 --user-name jovyan --image-name $(OWNER)/pgweb:$(TAG) ./binder .
+	${VENV_BIN}/jupyter-repo2docker --no-run --user-id 1000 --user-name jovyan --image-name $(OWNER)/pgweb:$(TAG) .
 	@echo -n "Built image size: "
 	@docker images $(OWNER)/pgweb:$(TAG) --format "{{.Size}}"
 
@@ -33,14 +33,14 @@ clean-all: ## remove built images and running containers (including those w/ exi
 	@docker rm -f $(shell docker ps -aq)
 
 dev: venv ## run one of the containers (stacks) on port 8889
-	docker-compose -f binder/docker-compose.yaml up -d --build
+	docker-compose -f docker-compose.yaml up -d --build
 
 dev-down:venv ## stop (down) the docker-compose services
-	docker-compose -f binder/docker-compose.yaml down
+	docker-compose -f docker-compose.yaml down
 
 lint: venv ## lint the dockerfile(s)
 	@echo "Linting Dockerfiles with Hadolint in ..."
-	@git ls-files --exclude='Dockerfile*' --ignored binder/docker-compose.yaml | grep -v ppc64 | xargs -L 1 $(HADOLINT) --config .hadolint.yml
+	@git ls-files --exclude='Dockerfile*' --ignored docker-compose.yaml | grep -v ppc64 | xargs -L 1 $(HADOLINT) --config .hadolint.yml
 	@echo "Linting with Hadolint done!"
 	@echo "Linting tests with flake8 ..."
 	${VENV_BIN}/flake8
