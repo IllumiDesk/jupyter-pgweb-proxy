@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  jupyter:
+    image: jupyter/pgweb
+    build:
+      context: .
+    container_name: notebook
+    restart: always
+    ports:
+      - 8889:8888
+  testdb:
+    image: postgres:12.3-alpine
+    container_name: postgres-labs
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
+volumes:
+  db:
+    name: db
