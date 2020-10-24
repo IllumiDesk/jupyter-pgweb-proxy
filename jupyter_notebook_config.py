@@ -13,7 +13,6 @@ c.NotebookApp.tornado_settings = {
 
 # allows running the notebook as root
 c.NotebookApp.allow_root = True
-<<<<<<< HEAD
 
 # accepts any origin by default, change to add restrictions
 c.NotebookApp.allow_origin = '*'
@@ -23,8 +22,3 @@ c.NotebookApp.token = ''
 
 # forward to jupyterlab by default
 c.NotebookApp.default_url = '/lab'
-=======
-c.NotebookApp.allow_origin = "*"
-c.NotebookApp.token = ""
-c.NotebookApp.default_url = "/lab"
->>>>>>> 7c4467fc3bba33a2b0621bfada4178706ff2c324
