@@ -15,6 +15,7 @@
             - make venv
           script:
             - set -e
+            - make build
             - make test
     
     stages:

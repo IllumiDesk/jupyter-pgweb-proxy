@@ -10,7 +10,7 @@ with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setuptools.setup(
     name="jupyter-pgweb-proxy",
-    version="0.2.0",
+    version="0.2.1",
     url="https://github.com/illumidesk/jupyter-pgweb-proxy",
     author="IllumiDesk Team",
     description="hello@illumidesk.com",
