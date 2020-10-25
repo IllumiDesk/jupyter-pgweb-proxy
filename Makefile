@@ -25,7 +25,7 @@ help:
 	@grep -E '^[a-zA-Z0-9_%/-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 build: ## build the latest image for a stack
-	${VENV_BIN}/jupyter-repo2docker --no-run --user-id 1000 --user-name jovyan --image-name $(OWNER)/pgweb:$(TAG) .
+	@docker build -t illumidesk/pgweb:latest .
 	@echo -n "Built image size: "
 	@docker images $(OWNER)/pgweb:$(TAG) --format "{{.Size}}"
 
