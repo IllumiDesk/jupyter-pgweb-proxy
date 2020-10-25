@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 import docker
 from docker.errors import ContainerError
@@ -31,10 +32,14 @@ def test_pgweb_version(executable, version_output):
     output_decoded = output.split(" ")
     assert output_decoded[0:2] == version_output
     LOGGER.info(f"Output from command: {output_decoded[0:3]}")
-
+    
 
 def test_invalid_cmd():
     """Ensure that an invalid command returns a docker.errors.ContainerError"""
-    with pytest.raises(ContainerError):
-        LOGGER.info("Test an invalid command ...")
-        f = os.popen("foo --version")
+    LOGGER.info("Test an invalid command ...")
+    f = os.popen(f'foo --version')
+    output = f.read()
+    output_decoded = output.split(" ")
+    assert output_decoded[0:1] != "pgweb"
+    LOGGER.info(f"Output from command: {output_decoded[0:3]}")
+    

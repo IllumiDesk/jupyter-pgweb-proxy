@@ -23,8 +23,7 @@ USER "${NB_USER}"
 RUN mkdir -p "/tmp/jupyter-pgweb-proxy"
 COPY . "/tmp/jupyter-pgweb-proxy"
 WORKDIR "/tmp/jupyter-pgweb-proxy"
-RUN python3 -m pip install .
-RUN python3 -m pip install -r requirements.txt \
+RUN python3 -m pip install . \
  && jupyter serverextension enable --sys-prefix jupyter_server_proxy \
  && jupyter labextension install @jupyterlab/server-proxy \
  && jupyter lab build

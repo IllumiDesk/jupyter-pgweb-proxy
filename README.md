@@ -33,7 +33,7 @@ This test requires you to have a database instance available as a public endpoin
 make dev
 ```
 
-1. Open your browser: http://localhost:8889
+1. Open your browser: `http://localhost:8889`
 1. Click the `pgweb` item from the `New` dropdown in `Jupyter Classic` or click on the green `pgweb` icon in the Notebooks section in `Jupyter Lab`.
 1. Connect with the `Scheme` or `Standard` option.
 
