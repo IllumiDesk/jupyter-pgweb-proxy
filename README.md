@@ -4,11 +4,16 @@ This package was built from the [`illumidesk/cookiecutter-jupyter-server-proxy`]
 
 ## Requirements
 
-- Python 3.6+
-- Jupyter Notebook 6.0+
-- JupyterLab 2.1+
+- [Python 3.6+](https://www.python.org/downloads/)
+- [Jupyter Notebook 6.0+](https://pypi.org/project/notebook/)
+- [JupyterLab 2.1+](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
 
-This package executes the standard `pgweb` command. This command assumes the `pgweb` command is available in the environment's `PATH`.
+(Optional) For testing:
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [docker-compose](https://docs.docker.com/compose/install/)
+
+This package executes the standard `pgweb` command. This command assumes the `pgweb` command is available in the environment's `PATH`. For convenience, the tests include cases that assert outputs when running the `pgweb` command from a docker container. If you don't need to run tests with this setup running in a docker container, then remove the `tests/test_pgweb_docker.py` file or comment out the code in the file.
 
 ## What?
 

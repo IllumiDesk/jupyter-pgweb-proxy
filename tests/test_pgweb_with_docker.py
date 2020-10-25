@@ -1,5 +1,3 @@
-import os
-
 import docker
 from docker.errors import ContainerError
 
@@ -12,7 +10,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 @pytest.mark.parametrize(
-    "executable,version_output",
+    "language,version_output",
     [
         (
             "pgweb",
@@ -23,18 +21,19 @@ LOGGER = logging.getLogger(__name__)
         ),
     ],
 )
-def test_pgweb_version(executable, version_output):
+def test_pgweb_version_with_docker(language, version_output):
     """Ensure pweb is available in the PATH and that it returns the correct version"""
-    LOGGER.info(f"Test that language {executable} is correctly installed ...")
-    f = os.popen(f'{executable} --version')
-    output = f.read()
-    output_decoded = output.split(" ")
+    LOGGER.info(f"Test that language {language} is correctly installed ...")
+    client = docker.from_env()
+    output = client.containers.run("illumidesk/pgweb:latest", f"{language} --version")
+    output_decoded = output.decode("utf-8").split(" ")
     assert output_decoded[0:2] == version_output
     LOGGER.info(f"Output from command: {output_decoded[0:3]}")
 
 
-def test_invalid_cmd():
+def test_invalid_cmd_with_docker():
     """Ensure that an invalid command returns a docker.errors.ContainerError"""
     with pytest.raises(ContainerError):
         LOGGER.info("Test an invalid command ...")
-        f = os.popen("foo --version")
+        client = docker.from_env()
+        client.containers.run("illumidesk/pgweb", "foo --version")
